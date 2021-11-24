@@ -1,10 +1,11 @@
+import os
+
 import telebot
 
 from dm import Action, apply_action, State
 from nlu import parse_action
 
-with open('token.txt') as f:
-    TOKEN = f.read()
+TOKEN = os.environ['TOKEN']
 
 
 bot = telebot.TeleBot(TOKEN)
