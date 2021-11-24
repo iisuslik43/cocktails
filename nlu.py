@@ -15,7 +15,7 @@ def _most_probable_action(message: str) -> Action:
         return Action.SAY_GOODBYE
     if _check_smth_in_str(['ingredients', 'ingredient', 'drink',
                            'drinks', 'stuff', 'bottles', 'ask', 'only',
-                           'tell', 'say', 'suggest'], message):
+                           'tell', 'say', 'suggest', 'cocktail', 'cocktails'], message):
         return Action.START_ASKING
     if _check_smth_in_str(['all', 'finish', 'end', 'everything', 'nothing'], message):
         return Action.END_ASKING
