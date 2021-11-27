@@ -22,7 +22,7 @@ cocktails_data = read_data()
 
 def cocktail_description(ingredients: List[str]) -> str:
     def find_interception(cocktail):
-        return sum([1 if ingr in cocktail else 0 for ingr in ingredients])
+        return sum([1 if ingr in cocktail else 0 for ingr in ingredients]) / len(cocktail.split(','))
     interception = cocktails_data['ingredients'].apply(find_interception)
     description = cocktails_data['strDrink'][interception.idxmax()]
     description = f'"{description}" - {cocktails_data["ingredients"][interception.idxmax()]}'
