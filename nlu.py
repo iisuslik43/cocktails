@@ -9,7 +9,7 @@ def _check_smth_in_str(strings: List[str], s: str) -> bool:
 
 def _most_probable_action(message: str) -> Action:
     message = message.lower()
-    if _check_smth_in_str(['hi', 'hello', 'good day', 'good morning', 'good evening'], message):
+    if _check_smth_in_str(['hi', 'hello', 'good day', 'good morning', 'good evening', 'good afternoon'], message):
         return Action.SAY_HELLO
     if _check_smth_in_str(['bye', 'goodbye', 'good night', 'see you', 'see ya'], message):
         return Action.SAY_GOODBYE
