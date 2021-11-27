@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import List, Tuple
 
-from cocktail_predict import cocktail_name
+from cocktail_predict import cocktail_description
 
 
 class State(Enum):
@@ -51,8 +51,8 @@ def apply_action(state: State, action_with_ingredient: ActionWithIngredient, ing
             return _random_aga_phrase(), State.ASKING
         if action == Action.END_ASKING:
             ingredients_names = ", ".join(ingredients)
-            cocktail = cocktail_name(ingredients)
+            cocktail = cocktail_description(ingredients)
             del ingredients[:]
-            return f'Tough one.... Maybe for "{ingredients_names}" the best one is "{cocktail}"', State.START
+            return f'Tough one.... Maybe for "{ingredients_names}" the best one is:\n{cocktail}', State.START
 
     return _random_error_message(), state

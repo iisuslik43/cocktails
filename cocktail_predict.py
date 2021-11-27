@@ -1,6 +1,5 @@
 from typing import List
 
-import numpy as np
 import pandas as pd
 
 
@@ -21,13 +20,15 @@ def read_data():
 cocktails_data = read_data()
 
 
-def cocktail_name(ingredients: List[str]) -> str:
+def cocktail_description(ingredients: List[str]) -> str:
     def find_interception(cocktail):
         return sum([1 if ingr in cocktail else 0 for ingr in ingredients])
     interception = cocktails_data['ingredients'].apply(find_interception)
-    return cocktails_data['strDrink'][interception.idxmax()]
+    description = cocktails_data['strDrink'][interception.idxmax()]
+    description = f'"{description}" - {cocktails_data["ingredients"][interception.idxmax()]}'
+    return description
 
 
 if __name__ == '__main__':
     print(cocktails_data['ingredients'])
-    print(cocktail_name(['rum', 'juice']))
+    print(cocktail_description(['rum', 'juice']))

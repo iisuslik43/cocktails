@@ -1,7 +1,6 @@
 import os
 
 import telebot
-
 from dm import Action, apply_action, State
 from nlu import parse_action
 
@@ -9,6 +8,8 @@ TOKEN = os.environ['TOKEN']
 
 
 bot = telebot.TeleBot(TOKEN)
+with open('help.txt') as f_help:
+    help_message = f_help.read()
 is_running = False
 
 
@@ -20,6 +21,14 @@ def start_handler(message):
         msg = bot.send_message(chat_id, 'Hello mate')
         bot.register_next_step_handler(msg, communicate, State.START, [])
         is_running = True
+
+
+@bot.message_handler(commands=['help'])
+def start_handler(message):
+    global is_running
+    if not is_running:
+        chat_id = message.chat.id
+        bot.send_message(chat_id, help_message)
 
 
 def communicate(message, state, ingredients):
